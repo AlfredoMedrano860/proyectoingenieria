@@ -1,0 +1,49 @@
+import { useTranslation } from "react-i18next";
+import logo from "../../assets/imgs/logo.png";
+import cara from "../../assets/imgs/CaraMascota.png";
+import brazos from "../../assets/imgs/BrazosMascota.png";
+import PrimaryButton from "../ui/PrimaryButton";
+import SecondaryButton from "../ui/SecondaryButton";
+import AuthLayout from "../layout/AuthLayout";
+
+interface WelcomeScreenProps {
+  onLogin: () => void;
+}
+
+function WelcomeScreen({ onLogin }: WelcomeScreenProps) {
+  const { t } = useTranslation();
+
+  return (
+    <AuthLayout>
+      {/* Logo */}
+      <div className="flex flex-col items-center pt-10 gap-3 px-6">
+        <img src={logo} alt="logo" className="w-44 md:w-52" />
+      </div>
+
+      {/* Mascota */}
+      <div className="flex-1 relative min-h-64">
+        <img
+          src={cara}
+          alt="Cara mascota"
+          className="absolute bottom-0 left-1/2 -translate-x-1/2 z-0 w-64 md:w-80"
+        />
+        <img
+          src={brazos}
+          alt="Brazos mascota"
+          className="absolute bottom-0 left-1/2 -translate-x-[51%] z-20 w-80 md:w-96"
+        />
+      </div>
+
+      {/* Botones */}
+      <div className="px-8 pb-10 pt-6">
+        <div className="max-w-sm w-full mx-auto flex flex-col gap-4">
+          <PrimaryButton text={t("welcome.login")} onClick={onLogin} />
+          <SecondaryButton text={t("welcome.exit")} onClick={() => {}} />
+        </div>
+      </div>
+      
+    </AuthLayout>
+  );
+}
+
+export default WelcomeScreen;
